@@ -1,13 +1,9 @@
-name: Convert Butane to Ignition
+name: Convert Butane to Ignition on Push
 
 on:
   push:
     paths:
-      - 'ucore-autorebase.butane'
-      - '.github/workflows/**'
-  pull_request:
-    paths:
-      - 'ucore-autorebase.butane'
+      - 'ucore-autorebase.bu'
       - '.github/workflows/**'
 
 jobs:
@@ -21,7 +17,7 @@ jobs:
       - name: Convert Butane to Ignition
         run: |
           podman run --interactive --rm quay.io/coreos/butane:release \
-          --pretty --strict < ucore-autorebase.butane > ucore-autorebase.ign
+          --pretty --strict < ucore-autorebase.bu > ucore-autorebase.ign
           
       - name: Commit changes
         run: |
