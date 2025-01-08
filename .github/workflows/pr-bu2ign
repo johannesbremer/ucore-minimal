@@ -1,0 +1,20 @@
+name: Convert Butane to Ignition on PR
+
+on:
+  pull_request:
+    paths:
+      - 'ucore-autorebase.bu'
+      - '.github/workflows/**'
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PUSH2REP }}
+      
+      - name: Convert Butane to Ignition
+        run: |
+          podman run --interactive --rm quay.io/coreos/butane:release \
+          --pretty --strict < ucore-autorebase.bu > ucore-autorebase.ign
