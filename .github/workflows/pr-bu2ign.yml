@@ -4,7 +4,7 @@ on:
   pull_request:
     paths:
       - 'ucore-autorebase.bu'
-      - '.github/workflows/**'
+      - '.github/workflows/pr-bu2ign.yml'
 
 jobs:
   convert:

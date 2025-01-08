@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - 'ucore-autorebase.bu'
-      - '.github/workflows/**'
+      - '.github/workflows/push-bu2ign.yml'
 
 jobs:
   convert:
