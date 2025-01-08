@@ -1,0 +1,28 @@
+name: Convert Butane to Ignition
+
+on:
+  push:
+    paths:
+      - 'ucore-autorebase.butane'
+  pull_request:
+    paths:
+      - 'ucore-autorebase.butane'
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Convert Butane to Ignition
+        run: |
+          podman run --interactive --rm quay.io/coreos/butane:release \
+          --pretty --strict < ucore-autorebase.butane > ucore-autorebase.ign
+          
+      - name: Commit changes
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'actions@github.com'
+          git add -f ucore-autorebase.ign
+          git commit -m "Update Ignition config" || exit 0
+          git push
