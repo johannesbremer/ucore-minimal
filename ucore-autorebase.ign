@@ -21,10 +21,17 @@
     ],
     "files": [
       {
-        "path": "/etc/zincati/config.d/30-updates-strategy.toml",
+        "path": "/etc/systemd/system/bootc-maintenance.timer",
         "contents": {
-          "compression": "gzip",
-          "source": "data:;base64,H4sIAAAAAAAC/2TNwUrFMBCF4X2eYoj73oDgotCN4BsoLkoosTm2wXRSkgmlPr1EqZu7nfn5zgO97d4JqEh2guXs6R34iieVeYWvEfSZMmV8pCS3zQUWsOMZdAT26SidGuuvUKy6DBpI78gh+TDr/393naySsGH6ToxWvtScdtyekWNgrca7vvubslZ5dxYaaCT9WqGpLbosU+OaZB57Y7SK4EXWaQtcBa1/MuonAAD//w4T6GfoAAAA"
+          "compression": "",
+          "source": "data:,%5BUnit%5D%0ADescription%3DWeekly%20maintenance%20window%0A%0A%5BTimer%5D%0AOnCalendar%3DTue%2003%3A00%3A00%20Europe%2FBerlin%0APersistent%3Dtrue%0A%0A%5BInstall%5D%0AWantedBy%3Dtimers.target%0A"
+        }
+      },
+      {
+        "path": "/etc/systemd/system/bootc-maintenance.service",
+        "contents": {
+          "compression": "",
+          "source": "data:,%5BUnit%5D%0ADescription%3DApply%20updates%20and%20reboot%0A%0A%5BService%5D%0AType%3Doneshot%0AExecStart%3D%2Fusr%2Fbin%2Fsystemctl%20reboot%0A"
         }
       }
     ]
