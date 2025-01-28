@@ -22,7 +22,6 @@ storage:
           
           [Install]
           WantedBy=timers.target
-  files:
     - path: /etc/systemd/system/bootc-maintenance.service
       contents:
         inline: |
