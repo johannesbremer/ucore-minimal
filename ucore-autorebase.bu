@@ -10,18 +10,28 @@ storage:
     - path: /etc/ucore-autorebase
       mode: 0754
   files:
-    - path: /etc/zincati/config.d/30-updates-strategy.toml
+    - path: /etc/systemd/system/bootc-maintenance.timer
       contents:
         inline: |
-          # Update strategy: Weekly schedule for reboot/maintenance windows.
-          [updates]
-          strategy = "periodic"
-          [updates.periodic]
-          time_zone = "Europe/Berlin"
-          [[updates.periodic.window]]
-          days = [ "Tue" ]
-          start_time = "03:00"
-          length_minutes = 60
+          [Unit]
+          Description=Weekly maintenance window
+          
+          [Timer]
+          OnCalendar=Tue 03:00:00 Europe/Berlin
+          Persistent=true
+          
+          [Install]
+          WantedBy=timers.target
+  files:
+    - path: /etc/systemd/system/bootc-maintenance.service
+      contents:
+        inline: |
+          [Unit]
+          Description=Apply updates and reboot
+          
+          [Service]
+          Type=oneshot
+          ExecStart=/usr/bin/systemctl reboot
 systemd:
   units:
     - name: ucore-unsigned-autorebase.service
