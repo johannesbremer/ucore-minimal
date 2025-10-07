@@ -20,6 +20,7 @@ jobs:
           --pretty --strict < ucore-autorebase.bu > ucore-autorebase.ign
           
       - name: Commit changes
+        if: github.ref == 'refs/heads/main'
         run: |
           git config --global user.name 'GitHub Actions'
           git config --global user.email 'actions@github.com'
