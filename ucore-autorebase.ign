@@ -7,7 +7,7 @@
       {
         "name": "core",
         "sshAuthorizedKeys": [
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFzK6gc+jP7GLkBU6ZeV11hBjqH4dfqeTB7o3XlLZlLL johannes@fedora"
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIz2B2OtV/oDE7bRQw7BSxbqRDhgH0mbhuotMxSSpkw0"
         ]
       }
     ]
